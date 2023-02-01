@@ -1,6 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC2012,SC2154,SC2086
-set -e
+set -exv
+
+OPENQA_WORKER_INSTANCE=$1
+TEST_DISTRI_DEPS=$2
 
 if [[ -z $OPENQA_WORKER_INSTANCE ]]; then
   OPENQA_WORKER_INSTANCE=1

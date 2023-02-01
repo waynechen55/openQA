@@ -3,7 +3,7 @@ LABEL maintainer Jan Sedlak <jsedlak@redhat.com>, Josef Skladanka <jskladan@redh
 LABEL version="0.3"
 
 # hadolint ignore=DL3037
-RUN zypper in -y ca-certificates-mozilla git wget && zypper clean
+RUN zypper in -y ca-certificates-mozilla git wget python && zypper clean --all
 
 COPY data.template /data
 COPY scripts /scripts

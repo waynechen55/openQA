@@ -10,8 +10,8 @@ RUN zypper ar -p 95 -f http://download.opensuse.org/repositories/devel:openQA/15
     # openQA might need rubygem:sass to compile assets in this context due to
     # unknown reasons even though the package should use the precompiled
     # assets from cache.tar
-    zypper in -y ca-certificates-mozilla curl openQA-local-db apache2 hostname which w3m 'rubygem(sass)' && \
-    zypper clean && \
+    zypper in -y ca-certificates-mozilla curl openQA-local-db apache2 hostname which w3m ipmitool xterm-console 'rubygem(sass)' && \
+    zypper clean --all && \
     gensslcert && \
     a2enmod headers && \
     a2enmod proxy && \
@@ -21,7 +21,7 @@ RUN zypper ar -p 95 -f http://download.opensuse.org/repositories/devel:openQA/15
     a2enmod rewrite && \
     a2enflag SSL
 
-COPY openqa-ssl.conf /etc/apache2/vhosts.d/openqa-ssl.conf
+#COPY openqa-ssl.conf /etc/apache2/vhosts.d/openqa-ssl.conf
 COPY openqa.conf /etc/apache2/vhosts.d/openqa.conf
 COPY run_openqa.sh /root/
 

@@ -14,7 +14,8 @@ RUN zypper ar -p 95 -f http://download.opensuse.org/repositories/devel:openQA/15
     zypper in -yl kmod && \
     (zypper in -yl qemu-ovmf-x86_64 ||:) && \
     (zypper in -yl qemu-uefi-aarch64 ||:) && \
-    zypper clean && \
+    zypper in -yl ipmitool xterm-console && \
+    zypper clean --all && \
     mkdir -p /root/qemu
 
 COPY kvm-mknod.sh /root/qemu/kvm-mknod.sh
@@ -37,3 +38,5 @@ RUN chmod +x /root/qemu/kvm-mknod.sh && \
     find /usr/share/openqa/script/worker /var/lib/openqa/cache /var/lib/openqa/pool -type d -exec chmod ug+x {} \;
 
 ENTRYPOINT ["/run_openqa_worker.sh"]
+
+CMD ["1", ""]
